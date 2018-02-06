@@ -68,6 +68,13 @@ public class TurnCtl implements PIDOutput {
             
             this.isTurning = true;
             this.cached = null;
+            
+            if (delta < 0) {
+            	this.controller.setP(.015);
+            } else {
+            	this.controller.setP(.0116);
+            }
+            
             this.controller.setSetpoint(delta);
             this.throttleDelta = 0;
             this.controller.enable();
