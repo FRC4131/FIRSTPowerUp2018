@@ -33,15 +33,17 @@ public class TurnAction implements Action {
     @Override
     public void doAction() {
         DoubleConsumer consumer = value -> {
-            value = Math.abs(value) < 0.1 ? 0.1 : value;
+            value = Math.abs(value) < 0.5 ? 0.5 : value;
             this.driveBase.doThrottle(Oi.sigl() * value, Oi.sigr() * value);
         };
 
         this.driveBase.prepareTeleop();
+        this.driveBase.doThrottle(0, 0);
         
         TurnCtl controller = TurnCtl.getInstance();
         controller.begin(this.delta);
         while (true) {
+        	Robot.debug(() -> String.valueOf(controller.getYaw()));
             if (controller.targetReached()) {
             	break;
             }

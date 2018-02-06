@@ -16,12 +16,16 @@ import java.util.List;
 public class Move12ThenTurn90 implements Procedure {
     @Override
     public int estimateLen() {
-        return 2;
+        return 6;
     }
 
     @Override
     public void populate(SubsystemProvider provider, List<Side> data, List<Action> procedure) {
+        procedure.add(new DistanceMoveAction(provider.getDriveBase(), 36));
+        procedure.add(new TurnAction(provider.getDriveBase(), 90));
         procedure.add(new DistanceMoveAction(provider.getDriveBase(), 12));
+        procedure.add(new TurnAction(provider.getDriveBase(), -90));
+        procedure.add(new DistanceMoveAction(provider.getDriveBase(), 24));
         procedure.add(new TurnAction(provider.getDriveBase(), 90));
     }
 }

@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
     private SubsystemProvider provider;
 
     public static void debug(Supplier<String> string) {
-        if (round++ == 2000) {
+        if (round++ == 20000) {
             System.out.println("DEBUG: " + string.get());
             round = 0;
         }
