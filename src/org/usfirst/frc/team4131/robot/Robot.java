@@ -80,12 +80,13 @@ public class Robot extends IterativeRobot {
         compressor.clearAllPCMStickyFaults();
 
         // Display auto procedures on dashboard
-        this.chooser.addDefault("LeftRightBaseline", new LeftRightBaseLine());
-        this.chooser.addObject("DS2ToSwitch", new DriverStation2ToSwitch());
-        this.chooser.addObject("LeftToSwitchOrScale", new LeftToSwitchOrScale());
+        this.chooser.addDefault("Left Right Baseline", new LeftRightBaseLine());
+        //this.chooser.addDefault("Left Right Baseline", new DriverSTation2ToBaseLine());
+        this.chooser.addObject("DriverStation 2 to switch", new DriverStation2ToSwitch());
+        /*this.chooser.addObject("LeftToSwitchOrScale", new LeftToSwitchOrScale());
         this.chooser.addObject("RightToSwitchOrScale", new RightToSwitchOrScale());
         this.chooser.addObject("Encoder Calibration", new EncoderCalibration());
-        SmartDashboard.putData("Auto Mode", this.chooser);
+        */SmartDashboard.putData("Auto Mode", this.chooser);
         
         provider.getClaw().armUp();
         provider.getClaw().clamp();
@@ -93,6 +94,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
+
+    	provider.getDriveBase().reset();
     	
         String str = "";
         

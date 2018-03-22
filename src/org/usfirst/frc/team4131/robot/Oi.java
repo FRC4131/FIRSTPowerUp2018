@@ -40,8 +40,8 @@ public final class Oi {
     public static final JoystickButton ELEVATORUP = new JoystickButton(AUX_JOYSTICK, 5);
     public static final JoystickButton ELEVATORDOWN = new JoystickButton(AUX_JOYSTICK, 3);
     
-    public static final JoystickButton CLIMBERUP = new JoystickButton(AUX_JOYSTICK, 6);
-    public static final JoystickButton CLIMBERDOWN = new JoystickButton(AUX_JOYSTICK, 4);
+    public static final JoystickButton CLIMBERUP = new JoystickButton(AUX_JOYSTICK, 4);
+    public static final JoystickButton CLIMBERDOWN = new JoystickButton(AUX_JOYSTICK, 6);
     
 
     private Oi() { // Prevent instantiation

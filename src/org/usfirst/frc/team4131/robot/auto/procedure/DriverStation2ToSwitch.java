@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4131.robot.auto.procedure;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
+
 import org.usfirst.frc.team4131.robot.auto.Action;
 import org.usfirst.frc.team4131.robot.auto.Procedure;
 import org.usfirst.frc.team4131.robot.auto.Side;
@@ -26,30 +28,34 @@ public class DriverStation2ToSwitch implements Procedure {
 	@Override
 	public void populate(SubsystemProvider provider, List<Side> data, List<Action> procedure) {
 		// check fms data
+		//Johnny's implementation: data.get(0) == Side.RIGHT
 		if (data.get(0) == Side.RIGHT) {
 			//forward 18", right 90, forward 27", left 90, forward 122"
-
 			procedure.add(new PneumaticActionOne(provider.getClaw()));
-			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 18));
+			Timer.delay(1);
+			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 30));
 			procedure.add(new TurnAction(provider.getDriveBase(), 90));
 			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 27));
 			procedure.add(new TurnAction(provider.getDriveBase(), -90));
 			procedure.add(new ElevatorAndClimberAction(provider.getClimber(), provider.getElevator(), false, true));
-			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 122));
+			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 92));
+			Timer.delay(1);
 			procedure.add(new PneumaticActionTwo(provider.getClaw()));
-		} else if (data.get(0) == Side.LEFT) {
+		} else if (data.get(0) == Side.LEFT){
 			//forward 18", left 90, forward 151", right 90, forward 122"
-
 			procedure.add(new PneumaticActionOne(provider.getClaw()));
-			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 18));
+			Timer.delay(1);
+			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 30));
 			procedure.add(new TurnAction(provider.getDriveBase(), -90));
 			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 27));
 			procedure.add(new TurnAction(provider.getDriveBase(), 90));
 			procedure.add(new ElevatorAndClimberAction(provider.getClimber(), provider.getElevator(), false, true));
-			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 122));
+			procedure.add(new DistanceMoveAction(provider.getDriveBase(), 92));
+			Timer.delay(1);
 			procedure.add(new PneumaticActionTwo(provider.getClaw()));
 		} else {
 			DriverStation.reportError("Bad FMS data", true);
+			System.err.println("Bad FMS data");
 		}
 	}
 }

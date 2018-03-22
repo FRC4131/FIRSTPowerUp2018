@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4131.robot.auto.action;
 
 import org.usfirst.frc.team4131.robot.auto.Action;
-import org.usfirst.frc.team4131.robot.subsystem.ClawSubsystem;
 import org.usfirst.frc.team4131.robot.subsystem.ClimberSubsystem;
 import org.usfirst.frc.team4131.robot.subsystem.ElevatorSubsystem;
 
@@ -14,8 +13,7 @@ public class ElevatorAndClimberAction implements Action{
 	
 	private boolean elevator2 = false;
 	private boolean climber2 = false;
-	
-	
+		
 	public ElevatorAndClimberAction(ClimberSubsystem climber, ElevatorSubsystem elevator, boolean climber2, boolean elevator2) {
 		this.climber = climber;
 		this.elevator = elevator;

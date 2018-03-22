@@ -4,12 +4,17 @@ import org.usfirst.frc.team4131.robot.Oi;
 import org.usfirst.frc.team4131.robot.Robot;
 import org.usfirst.frc.team4131.robot.subsystem.ClimberSubsystem;
 
+
+
 /**
  * A command which will activate the climber and raise the
  * robot using the pull-up bar.
  */
 public class ClimbCommand extends SingleSubsystemCmd<ClimberSubsystem> {
-    public ClimbCommand(ClimberSubsystem subsystem) {
+	private boolean isTop = true, isBottom = true;
+	public ClimbCommand(ClimberSubsystem subsystem) {
+		
+		
         super(subsystem);
     }
 
@@ -41,15 +46,19 @@ public class ClimbCommand extends SingleSubsystemCmd<ClimberSubsystem> {
             this.subsystem.stop();
         } else if (shouldLower()) {
             if (!Robot.isClimberTop) {
-                this.subsystem.stop();
+            	isTop = false;
+            	this.subsystem.stop();
             } else {
                 this.subsystem.climb();
+                isBottom = true;
             }
         } else if (shouldRaise()) {
-            if (!Robot.isClimberBottom) {
+        	if (!Robot.isClimberBottom) {
+        		isBottom = false;
                 this.subsystem.stop();
             } else {
                 this.subsystem.descend();
+                isTop = true;
             }
         } else {
             this.subsystem.stop();

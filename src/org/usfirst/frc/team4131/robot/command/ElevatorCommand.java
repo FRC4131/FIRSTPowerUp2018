@@ -10,6 +10,7 @@ import org.usfirst.frc.team4131.robot.subsystem.ElevatorSubsystem;
  */
 //TODO test when elevator is built
 public class ElevatorCommand extends SingleSubsystemCmd<ElevatorSubsystem> {
+	private boolean isTop = true, isBottom = true;
     public ElevatorCommand(ElevatorSubsystem subsystem) {
         super(subsystem);
     }
@@ -41,16 +42,20 @@ public class ElevatorCommand extends SingleSubsystemCmd<ElevatorSubsystem> {
         if (shouldRaise() && shouldLower()) {
             this.subsystem.stop();
         } else if (shouldRaise()) {
-            if (!Robot.isElevatorTop) {
+            if (!Robot.isElevatorTop || isTop) {
+            	isTop = false;
                 this.subsystem.stop();
             } else {
                 this.subsystem.raise();
+                isBottom = true;
             }
         } else if (shouldLower()) {
-            if (!Robot.isElevatorBottom) {
+            if (!Robot.isElevatorBottom || isBottom) {
                 this.subsystem.stop();
+                isBottom = false;
             } else {
                 this.subsystem.lower();
+                isTop = true;
             }
         } else {
             this.subsystem.stop();
